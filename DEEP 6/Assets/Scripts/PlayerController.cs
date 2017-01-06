@@ -13,34 +13,39 @@ public class PlayerController : MonoBehaviour {
 	//vid's Note: These modify the time needed and force added when the player holds the jump button down.
 	public float baseJumpModifier = 1;
 
+	private Animator anim;
+
 	public Rigidbody2D rb;
+
 	bool colliding = false;
 	bool flipped = false;
+	bool firstJump = false;
+
 	//bool gameStarted = false;
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D>();
+		anim = GetComponent<Animator> ();
 	}
 
 	void Update () {
 		if (Input.GetMouseButton(0)) {
+			anim.SetTrigger ("Crouch Trigger");
 			crouchTime += Time.deltaTime;
 		}
 
 		if (((Input.GetMouseButtonUp(0)) && colliding) && !flipped) {
-
+			anim.SetTrigger ("Jump Trigger");
 			GetComponent<Rigidbody2D> ().velocity = GetComponent<Rigidbody2D> ().velocity + Vector2.up * verticalVel * (crouchTime + baseJumpModifier);
 			GetComponent<Rigidbody2D> ().velocity = GetComponent<Rigidbody2D> ().velocity + Vector2.right * -horizontalVel;
-			transform.Rotate(new Vector3(0,180,0));
 			crouchTime = 0;
-
+			firstJump = true;
 			flipped = true;
 
 		}else if(((Input.GetMouseButtonUp(0)) && colliding) && flipped){
-
+			anim.SetTrigger ("Jump Trigger");
 			GetComponent<Rigidbody2D> ().velocity = GetComponent<Rigidbody2D> ().velocity + Vector2.up * verticalVel * (crouchTime + baseJumpModifier);
 			GetComponent<Rigidbody2D> ().velocity = GetComponent<Rigidbody2D> ().velocity + Vector2.left * -horizontalVel;
-			transform.Rotate(new Vector3(0,180,0));
 			crouchTime = 0;
 
 			flipped = false;
@@ -53,6 +58,9 @@ public class PlayerController : MonoBehaviour {
 		colliding = true;
 		GetComponent<Rigidbody2D>().gravityScale = 0;
 
+		if (firstJump = true) {
+			transform.Rotate (new Vector3 (0, 180, 0));
+		}
 
 	}
 	void OnCollisionExit2D(Collision2D collision){
