@@ -47,6 +47,15 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\SpawnPlatform.cs" />
+     <None Include="Assets\Editor\WakaTime\client\tests\samples\projects\hg\emptyfile.txt" />
+     <None Include="Assets\Editor\WakaTime\client\tests\samples\codefiles\twolinefile.txt" />
+     <None Include="Assets\Editor\WakaTime\client\tests\samples\projects\git\emptyfile.txt" />
+     <None Include="Assets\Editor\WakaTime\client\tests\samples\codefiles\emptyfile.txt" />
+     <None Include="Assets\Editor\WakaTime\client\dev-requirements.txt" />
+     <None Include="Assets\Editor\WakaTime\client\tests\samples\projects\svn\emptyfile.txt" />
+     <None Include="Assets\Editor\WakaTime\client\tests\samples\projects\wakatime_project_file\emptyfile.txt" />
+     <None Include="Assets\Editor\WakaTime\client\tests\samples\projects\project_map\emptyfile.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

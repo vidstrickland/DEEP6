@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour {
 
 	public Rigidbody2D rb;
 
+	public GameObject platform;
+
 	bool colliding = false;
 	bool flipped = false;
 	bool firstJump = false;
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour {
 	void Start(){
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator> ();
+		AttachToPlatform ();
 	}
 
 	void Update () {
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (((Input.GetMouseButtonUp(0)) && colliding) && !flipped) {
 			anim.SetTrigger ("Jump Trigger");
+			transform.parent = null;
 			GetComponent<Rigidbody2D> ().velocity = GetComponent<Rigidbody2D> ().velocity + Vector2.up * verticalVel * (crouchTime + baseJumpModifier);
 			GetComponent<Rigidbody2D> ().velocity = GetComponent<Rigidbody2D> ().velocity + Vector2.right * -horizontalVel;
 			crouchTime = 0;
@@ -50,6 +54,10 @@ public class PlayerController : MonoBehaviour {
 
 			flipped = false;
 		}
+	}
+
+	public void AttachToPlatform(){
+		this.transform.SetParent (platform.transform);
 	}
 
 	void OnCollisionEnter2D(Collision2D collision){
