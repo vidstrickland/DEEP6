@@ -1,79 +1,158 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
-	public float speed = 15.0f;
-	public float fallSpeed = 5f;
-	public float padding = 1f;
-	public float horizontalVel = 6;
-	public float verticalVel = 8;
-	public float crouchTime = 0;
+public class PlayerController : MonoBehaviour
+{
+    public float speed = 15.0f;
+    public float fallSpeed = 5f;
+    public float padding = 1f;
+    public float horizontalVel = 6;
+    public float verticalVel = 8;
+    public float crouchTime = 0;
+    public int lives = 3;
 
-	//CROUCH MODIFIERS
-	//vid's Note: These modify the time needed and force added when the player holds the jump button down.
-	public float baseJumpModifier = 1;
+    //CROUCH MODIFIERS
+    //vid's Note: These modify the time needed and force added when the player holds the jump button down.
+    public float baseJumpModifier = 1;
 
-	private Animator anim;
+    private Animator anim;
 
-	public Rigidbody2D rb;
+    public Rigidbody2D rb;
+    public GameObject shredder;
+    public GameObject platform;
+    public SpawnPlatform spawnPlatform;
 
-	public GameObject platform;
+    public bool onWall = false;
+    public bool onPlatform = false;
+    public bool isJumping = false;
 
-	bool colliding = false;
-	bool flipped = false;
-	bool firstJump = false;
+    bool flipped = false;
+    bool firstJump = false;
 
-	//bool gameStarted = false;
+    //bool gameStarted = false;
 
-	void Start(){
-		rb = GetComponent<Rigidbody2D>();
-		anim = GetComponent<Animator> ();
-		AttachToPlatform ();
-	}
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        AttachToPlatform();
+    }
 
-	void Update () {
-		if (Input.GetMouseButton(0)) {
-			anim.SetTrigger ("Crouch Trigger");
-			crouchTime += Time.deltaTime;
-		}
+    void Update()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (onPlatform)
+            {
+                anim.SetBool("isCrouching", true);
+            }
+            else if (onWall)
+            {
+                anim.SetBool("isClinging", false);
+                anim.SetBool("isClingCrouching", true);
+            }
+            crouchTime += Time.deltaTime;
+        }
 
-		if (((Input.GetMouseButtonUp(0)) && colliding) && !flipped) {
-			anim.SetTrigger ("Jump Trigger");
-			transform.parent = null;
-			GetComponent<Rigidbody2D> ().velocity = GetComponent<Rigidbody2D> ().velocity + Vector2.up * verticalVel * (crouchTime + baseJumpModifier);
-			GetComponent<Rigidbody2D> ().velocity = GetComponent<Rigidbody2D> ().velocity + Vector2.right * -horizontalVel;
-			crouchTime = 0;
-			firstJump = true;
-			flipped = true;
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (onPlatform)
+            {
+                Jump();
+                shredder.transform.position = new Vector3(0, -7, 0);
+                anim.SetBool("isCrouching", false);
+            }
+            else if (onWall)
+            {
+                Jump();
+                anim.SetBool("isClingCrouching", false);
+            }
+        }
+     }
 
-		}else if(((Input.GetMouseButtonUp(0)) && colliding) && flipped){
-			anim.SetTrigger ("Jump Trigger");
-			GetComponent<Rigidbody2D> ().velocity = GetComponent<Rigidbody2D> ().velocity + Vector2.up * verticalVel * (crouchTime + baseJumpModifier);
-			GetComponent<Rigidbody2D> ().velocity = GetComponent<Rigidbody2D> ().velocity + Vector2.left * -horizontalVel;
-			crouchTime = 0;
+    void Jump()
+    {
+        transform.parent = null;
+        anim.SetTrigger("Jump Trigger");
+        GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity + Vector2.up * verticalVel * (crouchTime + baseJumpModifier);
+        if (!flipped)
+        {
+            flipped = true;
+            GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity + Vector2.right * -horizontalVel;
+        }else
+        {
+            flipped = false;
+            GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity + Vector2.left * -horizontalVel;
+        }
+        anim.SetBool("isJumping", true);
+        crouchTime = 0;
+    }
 
-			flipped = false;
-		}
-	}
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        anim.SetBool("isJumping", false);
+        if (collision.gameObject.tag == "platform")
+        {
+            onPlatform = true;
+        }
+        else if (collision.gameObject.tag == "wall")
+        {
+            onWall = true;
+            
+            transform.Rotate(new Vector3(0, 180, 0));
+            anim.SetBool("isClinging", true);
 
-	public void AttachToPlatform(){
-		this.transform.SetParent (platform.transform);
-	}
+            //???
+            rb.velocity = new Vector3(0, -fallSpeed, 0);
+            print("collision!");
+            GetComponent<Rigidbody2D>().gravityScale = 0;
+        }
 
-	void OnCollisionEnter2D(Collision2D collision){
-		rb.velocity = new Vector3(0, -fallSpeed, 0);
-		print("collision!");
-		colliding = true;
-		GetComponent<Rigidbody2D>().gravityScale = 0;
+        if (collision.gameObject.tag == "shredder")
+        {
+            if (lives > 0)
+            {
+                shredder.transform.position = new Vector3(0, -12, 0);
+                print("shredded");
+                lives--;
+                transform.position = new Vector3(0, -6, 0);
+                AttachToPlatform();
+                anim.SetTrigger("Stand Trigger");
+                spawnPlatform.Respawn();
+                firstJump = false;
+                flipped = !flipped;
+            }
+        }
 
-		if (firstJump = true) {
-			transform.Rotate (new Vector3 (0, 180, 0));
-		}
+       if (collision.gameObject.tag == "wall") {
+        rb.velocity = new Vector3(0, -fallSpeed, 0);
+        print("collision!");
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+        }
 
-	}
-	void OnCollisionExit2D(Collision2D collision){
-		colliding = false;
-		print("not collision!");
-		GetComponent<Rigidbody2D>().gravityScale = 1;
-	}
+        if (firstJump == false)
+        {
+            firstJump = true;
+            transform.Rotate(new Vector3(0, 180, 0));
+            
+        }
+
+    }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        isJumping = true;
+        if (collision.gameObject.tag == "platform")
+        {
+            onPlatform = false;
+        }else if(collision.gameObject.tag == "wall")
+        {
+            onWall = false;
+        }
+        GetComponent<Rigidbody2D>().gravityScale = 1;
+    }
+
+    public void AttachToPlatform()
+    {
+        this.transform.SetParent(platform.transform);
+    }
 }
