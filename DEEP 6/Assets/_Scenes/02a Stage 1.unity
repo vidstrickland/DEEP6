@@ -699,7 +699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb63e6be51b054d7bacf7b3044c77fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 40
+  levelSpeed: 3
 --- !u!1 &903466970
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,7 +909,7 @@ Rigidbody2D:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &1394441511
 BoxCollider2D:
@@ -937,7 +937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  fallSpeed: 4
+  fallSpeed: 3
   padding: 1
   horizontalVel: 6
   verticalVel: 8
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb63e6be51b054d7bacf7b3044c77fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 40
+  levelSpeed: 3
 --- !u!1 &1657540448
 GameObject:
   m_ObjectHideFlags: 0

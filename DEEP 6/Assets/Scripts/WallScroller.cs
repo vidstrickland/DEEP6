@@ -3,9 +3,16 @@ using System.Collections;
 
 public class WallScroller : MonoBehaviour {
 
-	public float scrollSpeed = .5f;
+	//Level Speed must match Jolene's Fall Speed!
+	public float levelSpeed = 3;
+
 	float offset;
 	float rotate;
+	float scrollSpeed;
+
+	void Start(){
+		scrollSpeed = levelSpeed * 10;
+	}
 
 	void Update (){
 		offset+= (Time.deltaTime*scrollSpeed)/10.0f;

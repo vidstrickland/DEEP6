@@ -1,7 +1,3 @@
-/Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/Assembly-CSharp.dll.mdb
-/Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/Assembly-CSharp.dll
-/Users/vid/Documents/Game Development/DEEP6/DEEP 6/obj/Debug/Assembly-CSharp.dll
-/Users/vid/Documents/Game Development/DEEP6/DEEP 6/obj/Debug/Assembly-CSharp.dll.mdb
 /Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/UnityEngine.dll
 /Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/UnityEditor.dll
 /Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/UnityEngine.UI.dll
@@ -15,3 +11,7 @@
 /Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/vid/Documents/Game Development/DEEP6/DEEP 6/obj/Debug/Assembly-CSharp.dll
+/Users/vid/Documents/Game Development/DEEP6/DEEP 6/obj/Debug/Assembly-CSharp.dll.mdb
