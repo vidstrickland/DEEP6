@@ -53,7 +53,9 @@ public class PlayerController : MonoBehaviour
 				anim.SetBool("isJumping", false);
                 anim.SetBool("isClingCrouching", true);
             }
-            crouchTime += Time.deltaTime;
+			if (crouchTime < .5) {
+				crouchTime += Time.deltaTime;
+			}
         }
 
         if (Input.GetMouseButtonUp(0))
