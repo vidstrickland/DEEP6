@@ -44,11 +44,13 @@ public class PlayerController : MonoBehaviour
         {
             if (onPlatform)
             {
+				anim.SetBool("isStanding", false);
                 anim.SetBool("isCrouching", true);
             }
             else if (onWall)
             {
                 anim.SetBool("isClinging", false);
+				anim.SetBool("isJumping", false);
                 anim.SetBool("isClingCrouching", true);
             }
             crouchTime += Time.deltaTime;
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
             else if (onWall)
             {
                 Jump();
+				anim.SetBool("isCrouching", false);
                 anim.SetBool("isClingCrouching", false);
             }
         }
@@ -72,8 +75,8 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+		anim.SetBool("isJumping", true);
         transform.parent = null;
-        anim.SetTrigger("Jump Trigger");
         GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity + Vector2.up * verticalVel * (crouchTime + baseJumpModifier);
         if (!flipped)
         {
@@ -84,7 +87,6 @@ public class PlayerController : MonoBehaviour
             flipped = false;
             GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity + Vector2.left * -horizontalVel;
         }
-        anim.SetBool("isJumping", true);
         crouchTime = 0;
     }
 
@@ -117,7 +119,11 @@ public class PlayerController : MonoBehaviour
                 lives--;
                 transform.position = new Vector3(0, -6, 0);
                 AttachToPlatform();
-                anim.SetTrigger("Stand Trigger");
+				anim.SetBool("isJumping", false);
+				anim.SetBool("isClinging", false);
+				anim.SetBool("isClingCrouching", false);
+				anim.SetBool("isCrouching", false);
+				anim.SetBool("isStanding", true);
                 spawnPlatform.Respawn();
                 firstJump = false;
                 flipped = !flipped;
