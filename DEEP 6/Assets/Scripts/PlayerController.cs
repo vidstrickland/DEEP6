@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 				anim.SetBool("isJumping", false);
                 anim.SetBool("isClingCrouching", true);
             }
-			if (crouchTime < .5) {
+			if (crouchTime < .75) {
 				crouchTime += Time.deltaTime;
 			}
         }
@@ -119,8 +119,9 @@ public class PlayerController : MonoBehaviour
                 shredder.transform.position = new Vector3(0, -12, 0);
                 print("shredded");
                 lives--;
-                transform.position = new Vector3(0, -6, 0);
-                AttachToPlatform();
+				AttachToPlatform();
+				transform.position = new Vector3(0, -6, 0);
+                
 				anim.SetBool("isJumping", false);
 				anim.SetBool("isClinging", false);
 				anim.SetBool("isClingCrouching", false);
