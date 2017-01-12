@@ -12,6 +12,6 @@ public class WaveController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position += new Vector3(0, -scrollSpeed/30, 0);
+		transform.position += new Vector3(0, -scrollSpeed, 0) * Time.deltaTime;
 	}
 }

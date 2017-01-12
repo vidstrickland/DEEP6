@@ -9,11 +9,11 @@ public class Shooter : MonoBehaviour {
 	private Animator animator;
 	private bool hasFired = false;
 	private int bulletCount = 0;
-	public int delayCount = 0;
+	public float delayCount = 0;
 
 	void Start(){
 		//InvokeRepeating("FireDelay", 2.0f, 1f);
-		InvokeRepeating("Fire", delayCount, 0.3f);
+		InvokeRepeating("Fire", delayCount, 0.15f);
 
 		animator = GameObject.FindObjectOfType<Animator> ();
 
@@ -43,6 +43,7 @@ public class Shooter : MonoBehaviour {
 			newProjectile.transform.rotation = projectileParent.transform.rotation;
 			newProjectile.transform.rotation = gun.transform.rotation;
 			newProjectile.transform.position = gun.transform.position;
+			newProjectile.transform.parent = projectileParent.transform;
 			}
 		}
 	}
