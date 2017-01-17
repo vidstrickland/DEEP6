@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 212000013352453026}
   - component: {fileID: 114000013859557432}
   - component: {fileID: 61309181624398396}
+  - component: {fileID: 114928470801667222}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -100,6 +101,19 @@ MonoBehaviour:
   gun: {fileID: 1000010021914572}
   wm: {fileID: 114287477947155792, guid: 03736232ebdea432ba0de8736e5793e6, type: 2}
   delayCount: 4
+--- !u!114 &114928470801667222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012246158462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d657180a0f0474d44b940ccef5a918a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wm: {fileID: 114287477947155792, guid: 03736232ebdea432ba0de8736e5793e6, type: 2}
+  isLastEnemy: 0
 --- !u!212 &212000013352453026
 SpriteRenderer:
   m_ObjectHideFlags: 1

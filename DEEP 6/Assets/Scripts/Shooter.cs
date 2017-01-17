@@ -7,10 +7,13 @@ public class Shooter : MonoBehaviour {
 
 	private GameObject projectileParent;
 	public WaveManager wm;
+
 	private Animator animator;
 	private bool hasFired = false;
 	private int bulletCount = 0;
 	public float delayCount = 0;
+
+    public bool isLastEnemy = false;
 
 	void Start(){
 		wm.IncrementEnemyCount ();
@@ -52,6 +55,12 @@ public class Shooter : MonoBehaviour {
 		if (collision.gameObject.tag == "shredder") {
 			Destroy (gameObject);
 			wm.DecrementEnemyCount ();
+            if(isLastEnemy == true)
+            {
+                print("Spawning New Wave");
+                wm.EndWave(); ;
+                wm.SpawnWave();
+            }
 		}
 	}
 }
