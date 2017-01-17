@@ -6,12 +6,14 @@ public class Shooter : MonoBehaviour {
 	public GameObject projectile, gun;
 
 	private GameObject projectileParent;
+	public WaveManager wm;
 	private Animator animator;
 	private bool hasFired = false;
 	private int bulletCount = 0;
 	public float delayCount = 0;
 
 	void Start(){
+		wm.IncrementEnemyCount ();
 		//InvokeRepeating("FireDelay", 2.0f, 1f);
 		InvokeRepeating("Fire", delayCount, 0.15f);
 
@@ -46,4 +48,10 @@ public class Shooter : MonoBehaviour {
 			newProjectile.transform.parent = projectileParent.transform;
 			}
 		}
+	void OnTriggerEnter2D(Collider2D collision){
+		if (collision.gameObject.tag == "shredder") {
+			Destroy (gameObject);
+			wm.DecrementEnemyCount ();
+		}
 	}
+}

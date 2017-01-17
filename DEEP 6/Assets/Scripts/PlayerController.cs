@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
             //???
             rb.velocity = new Vector3(0, -fallSpeed, 0);
-            print("collision!");
+            //print("collision!");
             GetComponent<Rigidbody2D>().gravityScale = 0;
         }
 
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
        if (collision.gameObject.tag == "wall") {
         rb.velocity = new Vector3(0, -fallSpeed, 0);
-        print("collision!");
+        //print("collision!");
         GetComponent<Rigidbody2D>().gravityScale = 0;
         }
 
