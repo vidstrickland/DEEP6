@@ -497,7 +497,7 @@ Prefab:
         type: 2}
       propertyPath: levelMusicChangeArray.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: f4f05cc6f573a4907ada9fab6c41070e, type: 3}
     - target: {fileID: 114000011278459544, guid: 445af2be4ef684695a6b56857cdb0c90,
         type: 2}
       propertyPath: levelMusicChangeArray.Array.data[1]
