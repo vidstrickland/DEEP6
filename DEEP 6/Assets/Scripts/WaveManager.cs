@@ -4,31 +4,42 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour {
 
+	public GameObject currentWave;
 	public GameObject[] waveArray;
 	public int enemyCount = 0;
     public int waveCount = 0;
+	public bool isLastEnemy = false;
 
-    private GameObject wave;
-    private GameObject currentWave;
+    
 
     // Use this for initialization
     void Start () {
-        Reset();
+        //Reset();
         SpawnWave();
     }
 	
 	// Update is called once per frame
 	void Update () {
-    
+		/*if (isLastEnemy == true) {
+			SpawnWave ();
+			isLastEnemy = false;
+		}*/
 	}
 
     public void SpawnWave()
     {
         //Create the wave
-        currentWave = Instantiate(waveArray[waveCount]) as GameObject;
+		GameObject newWave = Instantiate(waveArray[waveCount]) as GameObject;
+
+		Shooter[] shooterArray = newWave.GetComponentsInChildren<Shooter> ();
+
+		foreach(Shooter shooter in shooterArray){
+			shooter.wm = this;
+		}
+
 
         //Position it at 0,0,0 (please build waves assuming they appear at 0,0,0)
-        currentWave.transform.position = new Vector3(0, 0, 0);
+        //currentWave.transform.position = new Vector3(0, 0, 0);
 
         //Increment current wave number
         waveCount++;
@@ -41,12 +52,12 @@ public class WaveManager : MonoBehaviour {
     }
 
 	public void IncrementEnemyCount(){
-		enemyCount++;
+		enemyCount+=1;
 		print ("Count++!" + enemyCount);
 	}
 
 	public void DecrementEnemyCount(){
-		enemyCount--;
+		enemyCount-=1;
 		print ("Count--!" + enemyCount);
 	}
 	private void Reset(){

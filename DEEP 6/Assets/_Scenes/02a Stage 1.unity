@@ -434,7 +434,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: STAGE 1 - CELL BLOCK D
+  m_Text: 'STAGE 1
+
+'
 --- !u!222 &263661064
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -451,7 +453,7 @@ Prefab:
     - target: {fileID: 114287477947155792, guid: 03736232ebdea432ba0de8736e5793e6,
         type: 2}
       propertyPath: waveArray.Array.size
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4609296463923412, guid: 03736232ebdea432ba0de8736e5793e6, type: 2}
       propertyPath: m_LocalPosition.x
@@ -499,7 +501,7 @@ Prefab:
         type: 2}
       propertyPath: waveArray.Array.data[1]
       value: 
-      objectReference: {fileID: 1276940899717668, guid: a08cf31dfba8f854f9be491d35c165f2,
+      objectReference: {fileID: 1276940899717668, guid: 5c97d3157e4594d41945020e1499ecb0,
         type: 2}
     - target: {fileID: 114287477947155792, guid: 03736232ebdea432ba0de8736e5793e6,
         type: 2}
@@ -511,6 +513,29 @@ Prefab:
       propertyPath: waveCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114287477947155792, guid: 03736232ebdea432ba0de8736e5793e6,
+        type: 2}
+      propertyPath: isLastEnemy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114287477947155792, guid: 03736232ebdea432ba0de8736e5793e6,
+        type: 2}
+      propertyPath: waveArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 1276940899717668, guid: 5c97d3157e4594d41945020e1499ecb0,
+        type: 2}
+    - target: {fileID: 114287477947155792, guid: 03736232ebdea432ba0de8736e5793e6,
+        type: 2}
+      propertyPath: waveArray.Array.data[3]
+      value: 
+      objectReference: {fileID: 1276940899717668, guid: 5c97d3157e4594d41945020e1499ecb0,
+        type: 2}
+    - target: {fileID: 114287477947155792, guid: 03736232ebdea432ba0de8736e5793e6,
+        type: 2}
+      propertyPath: waveArray.Array.data[4]
+      value: 
+      objectReference: {fileID: 1276940899717668, guid: 5c97d3157e4594d41945020e1499ecb0,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 03736232ebdea432ba0de8736e5793e6, type: 2}
   m_IsPrefabParent: 0
@@ -684,7 +709,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2

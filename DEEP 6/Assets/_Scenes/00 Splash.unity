@@ -292,7 +292,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BIT MECHANICA PRESENTS
+  m_Text: THE GAME IS LOADING
 --- !u!222 &494842554
 CanvasRenderer:
   m_ObjectHideFlags: 0

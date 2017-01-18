@@ -15,3 +15,7 @@
 /Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/Assembly-CSharp.dll
 /Users/vid/Documents/Game Development/DEEP6/DEEP 6/obj/Debug/Assembly-CSharp.dll
 /Users/vid/Documents/Game Development/DEEP6/DEEP 6/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/UnityEngine.PlaymodeTestsRunner.dll
+/Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/UnityEngine.Analytics.dll
+/Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/UnityEngine.HoloLens.dll
+/Users/vid/Documents/Game Development/DEEP6/DEEP 6/Temp/bin/Debug/UnityEngine.VR.dll

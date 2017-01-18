@@ -8,7 +8,7 @@ public class Shooter : MonoBehaviour {
 	private GameObject projectileParent;
 	public WaveManager wm;
 
-	private Animator animator;
+	//private Animator animator;
 	private bool hasFired = false;
 	private int bulletCount = 0;
 	public float delayCount = 0;
@@ -20,7 +20,7 @@ public class Shooter : MonoBehaviour {
 		//InvokeRepeating("FireDelay", 2.0f, 1f);
 		InvokeRepeating("Fire", delayCount, 0.15f);
 
-		animator = GameObject.FindObjectOfType<Animator> ();
+		//animator = GameObject.FindObjectOfType<Animator> ();
 
 		//creates a parent if neccessary
 		projectileParent = GameObject.Find ("Projectiles");
@@ -58,8 +58,8 @@ public class Shooter : MonoBehaviour {
             if(isLastEnemy == true)
             {
                 print("Spawning New Wave");
-                wm.EndWave(); ;
-                wm.SpawnWave();
+				wm.SpawnWave ();
+				wm.isLastEnemy = true;
             }
 		}
 	}

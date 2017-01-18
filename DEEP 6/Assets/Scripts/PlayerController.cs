@@ -112,29 +112,8 @@ public class PlayerController : MonoBehaviour
             GetComponent<Rigidbody2D>().gravityScale = 0;
         }
 
-        if (collision.gameObject.tag == "shredder")
-        {
-            if (lives > 0)
-            {
-                shredder.transform.position = new Vector3(0, -12, 0);
-                print("shredded");
-                lives--;
-				AttachToPlatform();
-				transform.position = new Vector3(0, -6, 0);
-                
-				anim.SetBool("isJumping", false);
-				anim.SetBool("isClinging", false);
-				anim.SetBool("isClingCrouching", false);
-				anim.SetBool("isCrouching", false);
-				anim.SetBool("isStanding", true);
-                spawnPlatform.Respawn();
-                firstJump = false;
-                flipped = !flipped;
-            }
-        }
-
        if (collision.gameObject.tag == "wall") {
-        rb.velocity = new Vector3(0, -fallSpeed, 0);
+        //rb.velocity = new Vector3(0, -fallSpeed, 0);
         //print("collision!");
         GetComponent<Rigidbody2D>().gravityScale = 0;
         }
@@ -147,6 +126,13 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+	void FixedUpdate(){
+		if(onWall){
+			//rb.velocity = new Vector3(0, -fallSpeed * Time.deltaTime, 0);
+		}
+	}
+
     void OnCollisionExit2D(Collision2D collision)
     {
         isJumping = true;
@@ -159,6 +145,29 @@ public class PlayerController : MonoBehaviour
         }
         GetComponent<Rigidbody2D>().gravityScale = 1;
     }
+
+	void OnTriggerEnter2D(Collider2D collider){
+		if (collider.gameObject.tag == "shredder")
+		{
+			if (lives > 0)
+			{
+				shredder.transform.position = new Vector3(0, -12, 0);
+				print("shredded");
+				lives--;
+				AttachToPlatform();
+				transform.position = new Vector3(0, -6, 0);
+
+				anim.SetBool("isJumping", false);
+				anim.SetBool("isClinging", false);
+				anim.SetBool("isClingCrouching", false);
+				anim.SetBool("isCrouching", false);
+				anim.SetBool("isStanding", true);
+				spawnPlatform.Respawn();
+				firstJump = false;
+				flipped = !flipped;
+			}
+		}
+	}
 
     public void AttachToPlatform()
     {

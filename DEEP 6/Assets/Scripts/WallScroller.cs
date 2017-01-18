@@ -14,7 +14,7 @@ public class WallScroller : MonoBehaviour {
 		scrollSpeed = levelSpeed * 10;
 	}
 
-	void Update (){
+	void FixedUpdate (){
 		offset+= (Time.deltaTime*scrollSpeed)/10.0f;
 		GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", new Vector2(0, offset));
 
