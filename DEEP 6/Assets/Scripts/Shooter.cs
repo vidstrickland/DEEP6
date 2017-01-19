@@ -16,6 +16,7 @@ public class Shooter : MonoBehaviour {
     public bool isLastEnemy = false;
 
 	void Start(){
+		gameObject.layer = LayerMask.NameToLayer("Untouchable");
 		wm.IncrementEnemyCount ();
 		//InvokeRepeating("FireDelay", 2.0f, 1f);
 		InvokeRepeating("Fire", delayCount, 0.15f);

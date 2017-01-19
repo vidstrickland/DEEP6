@@ -15,6 +15,10 @@ public class ChargeBeam : MonoBehaviour {
 	public float timeUntilFireBeam;
 	public float timeUntilHoldBeam;
 	public float timeUntilEndBeam;
+	private float playerPos;
+	private float cannonPos;
+	private bool hasCharged = false;
+	private bool hasFired = false;
 
 	// Use this for initialization
 	void Start () {
@@ -34,7 +38,20 @@ public class ChargeBeam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		transform.parent.position += new Vector3(0, 3, 0) * Time.deltaTime;
+		playerPos = GameObject.FindGameObjectWithTag ("Player").transform.position.y;
+		cannonPos = transform.position.y;
+
+		if (!hasCharged) {
+			if (playerPos > cannonPos) {
+				transform.parent.position += new Vector3 (0, 4, 0) * Time.deltaTime;
+			} else {
+				transform.parent.position += new Vector3 (0, 2, 0) * Time.deltaTime;
+			}
+		} else if (!hasFired) {
+			transform.parent.position += new Vector3 (0, 3, 0) * Time.deltaTime;
+		} else {
+			transform.parent.position += new Vector3 (0, 0, 0) * Time.deltaTime;
+		}
 	}
 
 	void ThinBeam(){
@@ -64,6 +81,7 @@ public class ChargeBeam : MonoBehaviour {
 	void Retract(){
 		anim.SetBool ("retract", true);
 		anim.SetBool("charge4", false);
+		hasCharged = true;
 	}
 	void FireBeam(){
 		anim.SetBool ("fireBeam", true);
@@ -76,5 +94,6 @@ public class ChargeBeam : MonoBehaviour {
 	void EndBeam(){
 		anim.SetBool ("endBeam", true);
 		anim.SetBool("holdBeam", false);
+		hasFired = true;
 	}
 }
