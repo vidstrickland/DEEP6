@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
             if (onPlatform)
             {
                 Jump();
-                shredder.transform.position = new Vector3(0, -7, 0);
+                //shredder.transform.position = new Vector3(0, -7, 0);
                 anim.SetBool("isCrouching", false);
             }
             else if (onWall)
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
 		{
 			if (lives > 0)
 			{
-				shredder.transform.position = new Vector3(0, -12, 0);
+				//shredder.transform.position = new Vector3(0, -12, 0);
 				print("shredded");
 				lives--;
 				AttachToPlatform();

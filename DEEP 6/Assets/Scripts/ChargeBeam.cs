@@ -33,7 +33,7 @@ public class ChargeBeam : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		transform.parent.position += new Vector3(0, 3, 0) * Time.deltaTime;
 	}
 

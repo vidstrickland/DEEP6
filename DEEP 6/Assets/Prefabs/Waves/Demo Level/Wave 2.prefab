@@ -540,13 +540,13 @@ MonoBehaviour:
   timeUntilThinBeam: 6.5
   timeUntilWidenBeam: 7
   timeUntilCharge1: 7.5
-  timeUntilCharge2: 10.6
-  timeUntilCharge3: 14.55
-  timeUntilCharge4: 14
+  timeUntilCharge2: 11.1
+  timeUntilCharge3: 15
+  timeUntilCharge4: 18.75
   timeUntilRetract: 20.5
-  timeUntilFireBeam: 22
-  timeUntilHoldBeam: 24.25
-  timeUntilEndBeam: 26
+  timeUntilFireBeam: 21.5
+  timeUntilHoldBeam: 21.55
+  timeUntilEndBeam: 22.55
 --- !u!114 &114882322784435648
 MonoBehaviour:
   m_ObjectHideFlags: 1
